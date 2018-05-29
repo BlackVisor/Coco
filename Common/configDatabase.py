@@ -23,8 +23,9 @@ class ConfigDatabase:
     }
 
     def __init__(self):
-        self.log = MyLog.getLog()
-        self.logger = self.log.logger
+        # 日志输出
+        # self.log = MyLog.getLog()
+        # self.logger = self.log.logger
         self.db = None
         self.cursor = None
 
@@ -39,10 +40,10 @@ class ConfigDatabase:
         except ConnectionError as ex:
             self.logger.error(str(ex))
 
-    def executeSQL(self, sql, params):
+    def executeSQL(self, sql):
         self.connectDatabase()
         # executing sql
-        self.cursor.execute(sql, params)
+        self.cursor.execute(sql)
 
         # executing by committing to db
         self.db.commit()
