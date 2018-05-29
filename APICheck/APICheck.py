@@ -3,7 +3,7 @@ import xlwt
 
 
 # api文档
-with open("D:/Code/Utils/APICheck/design.json", encoding='UTF-8') as fp:
+with open("D:/Code/OfferPlus/APICheck/design.json", encoding='UTF-8') as fp:
     data1 = json.load(fp)
     # json_str=json.dumps(data)
     # print(data)
@@ -12,7 +12,7 @@ with open("D:/Code/Utils/APICheck/design.json", encoding='UTF-8') as fp:
     # print(type(keys))
 
 # 实际返回
-with open("D:/Code/Utils/APICheck/real.json", encoding='UTF-8') as fp:
+with open("D:/Code/OfferPlus/APICheck/real.json", encoding='UTF-8') as fp:
     data2 = json.load(fp)
     # data_login=data2["login"]
 
@@ -26,26 +26,25 @@ m = 0
 for key1 in data1.keys():
 
     i = 0
-    sheet.write(i, m, key1+"API文档")
+    sheet.write(i, m, key1)
     i = 1
-    for key_API in data1['data'].keys():
-        # 行，列 ，值
-        sheet.write(i, m, key_API)
-        i = i+1
-    m = m+4
+    if isinstance(data1.get(key1), dict):
+        for key_API in data1[key1].keys():
+            # 行，列 ，值
+            sheet.write(i, m, key_API)
+            i = i + 1
 
-
-l = 2
+l = 4
 for key2 in data2.keys():
 
     k = 0
     # print(api_ACT, l)
-    sheet.write(k, l, key2 + "实际返回")
+    sheet.write(k, l, key2)
     k = 1
-    for key_ACT in data2['data'].keys():
-        # 行，列，值
-        sheet.write(k, l, key_ACT)
-        k = k+1
-    l = l+4
+    if isinstance(data2[key2], dict):
+        for key_ACT in data2[key2].keys():
+            # 行，列，值
+            sheet.write(k, l, key_ACT)
+            k = k + 1
 
-book.save('D:/Code/Utils/APICheck/Contrast.xlsx')
+book.save('D:/Code/OfferPlus/APICheck/Contrast.xls')
