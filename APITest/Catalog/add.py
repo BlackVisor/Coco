@@ -12,7 +12,7 @@ import json
 import time
 
 
-def apiTest(protocol, host, port, path, apiName, i):
+def apiTest(protocol, host, port, path, apiName):
 
     # fileName = os.path.basename(__file__)
     content = queryString.QueryString.content
@@ -29,5 +29,5 @@ def apiTest(protocol, host, port, path, apiName, i):
     print(a.text)
 
 
-for i in range(51,52):
-    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', '/catalog/category/add.do', i)
+for i in range(1):
+    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', '/catalog/category/add.do')
