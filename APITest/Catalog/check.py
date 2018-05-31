@@ -20,7 +20,7 @@ def apiTest(protocol, host, port, path, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
-    content['categoryName'] = '第1个catalog目录'
+    content['categoryName'] = '第50个catalog目录'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(protocol+'://'+host+':'+port+'/'+path+'/'+apiName+'.do', data=content)
@@ -29,4 +29,4 @@ def apiTest(protocol, host, port, path, apiName):
 
 
 for i in range(1):
-    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', '/catalog/category/check.do')
+    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', 'catalog/category/check.do')

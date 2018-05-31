@@ -22,7 +22,7 @@ def apiTest(protocol, host, port, path, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
-    content['categoryName'] = '第' + str(i) +'个catalog目录'
+    content['categoryName'] = '第' + str(int(time.time())) +'个catalog目录'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(protocol+'://'+host+':'+port+'/'+path+'/'+apiName+'.do', data=content)

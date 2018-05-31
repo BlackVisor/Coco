@@ -6,7 +6,7 @@
 # @Desc  :
 
 import requests
-from Common import queryString
+from Common import queryString, configDatabase
 import json
 
 
@@ -16,13 +16,13 @@ def apiTest(protocol, host, port, path, apiName):
     content = queryString.QueryString.content
 
     # connect = configDatabase.ConfigDatabase()
-    # sql = 'select offer_id from ejet_my_offer where user_id = 1001200 and offer_status = 0'
+    # sql = 'select  from  where '
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
+    # connect.closeDatabase()
 
-    content['categoryId'] = 82
-    content['page'] = 4
-    content['pageNum'] = 100
+    content['ids'] = ''
+    content['type'] = ''
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(protocol+'://'+host+':'+port+'/'+path+'/'+apiName+'.do', data=content)
@@ -31,4 +31,4 @@ def apiTest(protocol, host, port, path, apiName):
 
 
 for i in range(1):
-    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', 'catalog/category/product/list.do')
+    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', 'favorite/inquiry/add')

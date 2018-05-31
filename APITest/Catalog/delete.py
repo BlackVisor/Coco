@@ -16,11 +16,12 @@ def apiTest(protocol, host, port, path, apiName):
     content = queryString.QueryString.content
 
     connect = configDatabase.ConfigDatabase()
-    sql = 'select id from ejet_user_category where user_id = 1001200 order by create_time asc limit 1'
+    sql = 'select id from ejet_user_category where user_id = 1001200 order by rand() limit 1'
     cursor = connect.executeSQL(sql)
     result = connect.getOne(cursor)
     connect.closeDatabase()
     content['id'] = result[0]
+
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(protocol+'://'+host+':'+port+'/'+path+'/'+apiName+'.do', data=content)
@@ -30,4 +31,4 @@ def apiTest(protocol, host, port, path, apiName):
 
 
 for i in range(1):
-    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', 'catalog/category/del.do')
+    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', 'catalog/category/delete')
