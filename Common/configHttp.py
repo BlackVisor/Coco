@@ -7,7 +7,7 @@ localReadConfig = readConfig.ReadConfig()
 
 class ConfigHttp:
     def __init__(self):
-        global protocol, host, port, path, timeout
+        global url, timeout
 
         protocol = localReadConfig.getHttp("protocol")
         host = localReadConfig.getHttp("url")

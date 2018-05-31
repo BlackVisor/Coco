@@ -10,14 +10,14 @@ from Common import queryString, configDatabase, readConfig
 import json
 
 
-def apiTest(protocol, host, port, path, apiName):
+def apiTest(url, apiName):
 
     # fileName = os.path.basename(__file__)
     content = queryString.QueryString.content
 
     content = queryString.QueryString.content
-    user = readConfig.ReadConfig()
-    userId = user.getUser('userId')
+    config = readConfig.ReadConfig()
+    userId = config.getUser('userId')
 
     connect = configDatabase.ConfigDatabase()
     sql = 'select product_id from ejet_category_product where user_id != %d and status = 0' % (int(userId))
@@ -28,10 +28,10 @@ def apiTest(protocol, host, port, path, apiName):
     content['productId'] = result[0]
 
     # 获取函数名sys._getframe().f_code.co_name
-    a = requests.post(protocol+'://'+host+':'+port+'/'+path+'/'+apiName+'.do', data=content)
+    a = requests.post(url+apiName+'.do', data=content)
     print(a.text)
     print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
 
 for i in range(1):
-    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', 'favorite/product/del')
+    apiTest(url, 'favorite/product/del')

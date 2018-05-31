@@ -11,6 +11,7 @@ class ReadConfig:
     def __init__(self):
         fd = open(configDirectory)
         data = fd.read()
+        self.url = ''
 
         # 移除BOM
         if data[:3] == codecs.BOM_UTF8:
@@ -37,4 +38,11 @@ class ReadConfig:
 
     def getUser(self, name):
         value = self.config.get("user", name)
+        return value
+
+    def getUrl(self):
+        value = self.config.get("http", "protocol") + "://" + \
+                self.config.get("http", "url") + ":" +\
+                str(self.config.get("http", "port")) + "/" + \
+                self.config.get("http", "appPath") + "/"
         return value

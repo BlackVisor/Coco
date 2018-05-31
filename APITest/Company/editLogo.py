@@ -6,10 +6,14 @@
 # @Desc  :
 
 import requests
-from Common import queryString
+from Common import queryString, configDatabase, readConfig
+
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
 
 
-def apiTest(protocol, host, port, path, apiName):
+def apiTest(url, apiName):
 
     # fileName = os.path.basename(__file__)
     content = queryString.QueryString.content
@@ -22,8 +26,8 @@ def apiTest(protocol, host, port, path, apiName):
     content[''] = ''
 
     # 获取函数名sys._getframe().f_code.co_name
-    a = requests.post(protocol+'://'+host+':'+port+'/'+path+'/'+apiName+'.do', data=content)
+    a = requests.post(url+apiName+'.do', data=content)
     print(a.text)
 
 for i in range(50):
-    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', 'company/editLogo.do')
+    apiTest(url, 'company/editLogo.do')

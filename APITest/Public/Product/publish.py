@@ -6,12 +6,12 @@
 # @Desc  :
 
 import requests
-from Common import queryString, configDatabase
+from Common import queryString, configDatabase, readConfig
 import random
 import json
 
 
-def apiTest(protocol, host, port, path, apiName):
+def apiTest(url, apiName):
 
     # fileName = os.path.basename(__file__)
     content = queryString.QueryString.content
@@ -50,9 +50,9 @@ def apiTest(protocol, host, port, path, apiName):
 
 
     # sys._getframe().f_code.co_name
-    a = requests.post(protocol+'://'+host+':'+port+'/'+path+'/'+apiName+'.do', data=content)
+    a = requests.post(url+apiName+'.do', data=content)
     print(a.text)
 
 
 for i in range(100):
-    apiTest('http', 'hzdev.offerplus.com', '82', 'offerplus', 'pub/product/publish')
+    apiTest(url, 'pub/product/publish')
