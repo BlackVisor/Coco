@@ -28,7 +28,9 @@ def apiTest(url, apiName):
     connect.closeDatabase()
 
     # content['categoryId'] = result[0]
-    content['ids'] = result[1]
+    # content['ids'] = result[1]
+    content['ids'] = [21, 22, 23]
+
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

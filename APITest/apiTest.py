@@ -9,6 +9,9 @@ import requests
 from Common import queryString, configDatabase, readConfig
 import json
 
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
 
 def apiTest(url, apiName):
 

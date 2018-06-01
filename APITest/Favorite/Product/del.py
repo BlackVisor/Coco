@@ -9,6 +9,10 @@ import requests
 from Common import queryString, configDatabase, readConfig
 import json
 
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
+
 
 def apiTest(url, apiName):
 
@@ -16,8 +20,6 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     content = queryString.QueryString.content
-    config = readConfig.ReadConfig()
-    userId = config.getUser('userId')
 
     connect = configDatabase.ConfigDatabase()
     sql = 'select product_id from ejet_category_product where user_id != %d and status = 0' % (int(userId))

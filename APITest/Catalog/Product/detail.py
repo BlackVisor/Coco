@@ -22,7 +22,7 @@ def apiTest(url, apiName):
     userId = config.getUser('userId')
 
     connect = configDatabase.ConfigDatabase()
-    sql = 'select category_id, product_id from ejet_category_product where user_id = %d and status = 1' % (int(userId))
+    sql = 'select category_id, product_id from ejet_category_product where user_id = %d and status = 0 order by rand() limit 1' % (int(userId))
     cursor = connect.executeSQL(sql)
     result = connect.getOne(cursor)
 

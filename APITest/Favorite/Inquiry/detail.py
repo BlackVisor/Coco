@@ -9,6 +9,9 @@ import requests
 from Common import queryString, configDatabase, readConfig
 import json
 
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
 
 def apiTest(url, apiName):
 
@@ -21,7 +24,7 @@ def apiTest(url, apiName):
     # result = connect.getAll(cursor)
     # connect.closeDatabase()
 
-    #content[''] = ''
+    content['inquiryId'] = 6
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

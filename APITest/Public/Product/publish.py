@@ -10,6 +10,10 @@ from Common import queryString, configDatabase, readConfig
 import random
 import json
 
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
+
 
 def apiTest(url, apiName):
 
@@ -45,7 +49,7 @@ def apiTest(url, apiName):
     content['validDay'] = random.choice(validDayList)
     content['priceTerms'] = random.choice(priceTerms)
     content['portOfShipment'] = 'this is port of shipment'
-    content['productArrSheet'] = json.dumps(random.choice(arraySheet))
+    content['productArrSheet'] = '[' + json.dumps(random.choice(arraySheet)) + ']'
 
 
 

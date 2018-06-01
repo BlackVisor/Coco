@@ -19,7 +19,7 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     # connect = configDatabase.ConfigDatabase()
-    # sql = 'select offer_id from ejet_my_offer where user_id = 1001200 and offer_status = 0'
+    # sql = 'select offer_id from ejet_my_offer where user_id = %d and offer_status = 0' % int(userId)
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 

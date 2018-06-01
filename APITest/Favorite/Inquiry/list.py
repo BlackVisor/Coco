@@ -9,6 +9,10 @@ import requests
 from Common import queryString, configDatabase, readConfig
 import json
 
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
+
 
 def apiTest(url, apiName):
 
@@ -22,8 +26,8 @@ def apiTest(url, apiName):
     # connect.closeDatabase()
 
     content['page'] = 1
-    content['pageNum'] = 20
-    # content['searchName'] = ''
+    content['pageNum'] = 100
+    content['searchName'] = 'uuu'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

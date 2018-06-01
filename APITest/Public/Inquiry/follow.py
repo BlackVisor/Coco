@@ -8,12 +8,11 @@
 import requests
 from Common import queryString, configDatabase, readConfig
 import json
-
+import time
 
 config = readConfig.ReadConfig()
 userId = config.getUser('userId')
 url = config.getUrl()
-
 
 def apiTest(url, apiName):
 
@@ -21,22 +20,23 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     connect = configDatabase.ConfigDatabase()
-    # sql = 'select product_id from ejet_category_product where user_id != %d and status = 0' % (int(userId))
-    sql = 'select offer_id from ejet_my_rece_rela where user_id = %d and del_status = 0' % (int(userId))
+    sql = 'select inquiry_id from ejet_public_inquiry where user_id <> %d and rfq_status =2 and del_status = 0 order by rand()' % (int(userId))
+    # sql = 'select inquiry_id from ejet_collect_inquiry where user_id = %d' % (int(userId))
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
 
+    # content['inquiryId'] = result[0]
+
     for j in range(len(result)):
-        content['productId'] = result[j][0]
-        # type is: 0=from catalog, 1=from received product
-        content['type'] = 1
+        content['inquiryId'] = result[j][0]
+        time.sleep(1)
 
         # 获取函数名sys._getframe().f_code.co_name
         a = requests.post(url+apiName+'.do', data=content)
         print(a.text)
-        # print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
+    # print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
 
 for i in range(1):
-    apiTest(url, 'favorite/product/add')
+    apiTest(url, 'pub/inquiry/follow')
