@@ -12,7 +12,8 @@ config = readConfig.ReadConfig()
 userId = config.getUser('userId')
 url = config.getUrl()
 
-def apiTest(url, apiName):
+
+def apiTest(url: str, apiName: str):
 
     # fileName = os.path.basename(__file__)
     content = queryString.QueryString.content
