@@ -7,28 +7,32 @@
 
 import requests
 from Common import queryString, configDatabase, readConfig
+import json
 
 config = readConfig.ReadConfig()
 userId = config.getUser('userId')
 url = config.getUrl()
-
 
 def apiTest(url, apiName):
 
     # fileName = os.path.basename(__file__)
     content = queryString.QueryString.content
 
-    # connect = configDatabase.ConfigDatabase()
-    # sql = 'select offer_id from ejet_my_offer where user_id = 1001200 and offer_status = 0'
-    # cursor = connect.executeSQL(sql)
-    # result = connect.getAll(cursor)
+    connect = configDatabase.ConfigDatabase()
+    sql = 'select company_id from ejet_user_company where user_id = %d ' % (int(userId))
+    cursor = connect.executeSQL(sql)
+    result = connect.getOne(cursor)
+    connect.closeDatabase()
 
-    #content[''] = ''
+    content['companyId'] = result[0]
+    content['page'] = 1
+    content['pageNum'] = 20
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
     print(a.text)
+    print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
 
 for i in range(1):
-    apiTest(url, 'company/addresses')
+    apiTest(url, 'company/inquiries')

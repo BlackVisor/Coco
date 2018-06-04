@@ -25,7 +25,7 @@ def apiTest(url, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
-    content['categoryName'] = '第' + str(int(time.time())) +'个catalog目录'
+    content['categoryName'] = '第1个catalog目录'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

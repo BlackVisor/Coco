@@ -20,9 +20,8 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     connect = configDatabase.ConfigDatabase()
-    # sql = 'select product_id from ejet_public_product where user_id <> %d and del_status = 0' % (int(userId))
     # sql = 'select inquiry_id from ejet_collect_inquiry where user_id = %d' % (int(userId))
-    sql = 'select inquiry_id from ejet_collect_inquiry where user_id = %d' % (int(userId))
+    sql = 'select inquiry_id from ejet_collect_inquiry where user_id != %d ' % (int(userId))
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()

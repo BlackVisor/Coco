@@ -21,16 +21,17 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     connect = configDatabase.ConfigDatabase()
-    # sql = 'select product_id from ejet_category_product where user_id != %d and status = 0' % (int(userId))
-    sql = 'select offer_id from ejet_my_rece_rela where user_id = %d and del_status = 0' % (int(userId))
+    sql = 'select product_id from ejet_category_product where user_id != %d and status = 0' % (int(userId))
+    # sql = 'select offer_id from ejet_my_rece_rela where user_id = %d and del_status = 0' % (int(userId))
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
 
     for j in range(len(result)):
+    # for j in range(1):
         content['productId'] = result[j][0]
         # type is: 0=from catalog, 1=from received product
-        content['type'] = 1
+        content['type'] = 0
 
         # 获取函数名sys._getframe().f_code.co_name
         a = requests.post(url+apiName+'.do', data=content)

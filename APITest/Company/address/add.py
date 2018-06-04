@@ -23,7 +23,13 @@ def apiTest(url, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
-    #content[''] = ''
+    content['companyName'] = '这是公司名'
+    content['country'] = 'China_86'
+    content['deliveryAddress'] = '这是地址'
+    content['companyTel'] = '564-4654'
+    content['companyEmail'] = '654654@1.dd'
+    content['destination'] = '这是目的地'
+    content['contactName'] = '这是联系人名字'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
@@ -31,4 +37,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, '')
+    apiTest(url, 'company/address/add')

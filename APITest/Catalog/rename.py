@@ -29,10 +29,11 @@ def apiTest(url, apiName):
     result = connect.getOne(cursor)
     connect.closeDatabase()
     content['id'] = result[0]
-    content['categoryName'] = result[1]+'a'
+    content['categoryName'] = result[1]
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
+    print(a.text)
     print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
 
