@@ -24,7 +24,7 @@ def apiTest(url, apiName):
     # result = connect.getAll(cursor)
 
     content['categoryId'] = 82
-    content['page'] = 4
+    content['page'] = 1
     content['pageNum'] = 100
 
     # 获取函数名sys._getframe().f_code.co_name
