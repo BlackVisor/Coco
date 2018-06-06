@@ -27,7 +27,8 @@ def apiTest(url, apiName):
     cursor = connect.executeSQL(sql)
     result = connect.getOne(cursor)
     connect.closeDatabase()
-    content['id'] = result[0]
+    # content['id'] = result[0]
+    content['id'] = 76
 
 
     # 获取函数名sys._getframe().f_code.co_name
