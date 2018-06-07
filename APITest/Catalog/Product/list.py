@@ -22,10 +22,10 @@ def apiTest(url, apiName):
     # sql = 'select offer_id from ejet_my_offer where user_id = %d and offer_status = 0' % int(userId)
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
-
-    content['categoryId'] = 82
+    # 82有超过200个产品
+    content['categoryId'] = 102
     content['page'] = 1
-    content['pageNum'] = 100
+    content['pageNum'] = 80
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

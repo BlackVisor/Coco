@@ -8,7 +8,6 @@
 import requests
 from Common import queryString, configDatabase, readConfig
 import json
-import time
 
 config = readConfig.ReadConfig()
 userId = config.getUser('userId')
@@ -27,6 +26,7 @@ def apiTest(url, apiName):
     connect.closeDatabase()
 
     for i in range(len(result)):
+        content['fromPublic'] = 1
         content['inquiryId'] = 245
         content['tokenId'] = result[i][0]
         if result[i][1] == 'A':
@@ -39,8 +39,8 @@ def apiTest(url, apiName):
         # 获取函数名sys._getframe().f_code.co_name
         a = requests.post(url+apiName+'.do', data=content)
         print(a.text)
-    # print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
+        # print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
 
 for i in range(1):
-    apiTest(url, 'pub/inquiry/follow')
+    apiTest(url, 'pub/inquiry/detail')

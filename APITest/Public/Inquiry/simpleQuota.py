@@ -9,6 +9,7 @@ import requests
 from Common import queryString, configDatabase, readConfig
 import json
 import time
+import random
 
 config = readConfig.ReadConfig()
 userId = config.getUser('userId')
@@ -25,10 +26,22 @@ def apiTest(url, apiName):
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
-
-    for i in range(len(result)):
+    validDayList = [10, 20, 30, 40, 50, 60]
+    currencyList = ['USD', 'CNY', 'EUR', 'GBP', 'CHF']
+    unitList = ['PCS', 'Set', 'Box', 'Pal', 'Doz']
+    priceTerms = ['FOB', 'EXW', 'FAS', 'FCA', 'CFR']
+    for j in range(len(result)):
         content['inquiryId'] = 245
-        content['tokenId'] = result[i][0]
+        content['tokenId'] = result[j][0]
+        content['price'] = random.randint(1, 99999)
+        content['priceCry'] = random.choice(currencyList)
+        content['validateTime'] = random.choice(validDayList)
+        content['unit'] = random.choice(unitList)
+        content['priceTerms'] = random.choice(priceTerms)
+        content['remarkImg'] = '2ae4f00b-0d61-4c99-aa4c-2b1f65f0defc,2ae4f00b-0d61-4c99-aa4c-2b1f65f0defc'
+        content['placeDelivery'] = '这是placeDelivery'+str(j)
+        content['remark'] = '这是remark'+str(j)
+        content['deliveryTime'] = str(random.randint(1,30))
         if result[i][1] == 'A':
             content['appType'] = 'A'
             content['packageName'] = 'com.oujia.offerplus'
@@ -43,4 +56,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, 'pub/inquiry/follow')
+    apiTest(url, 'pub/inquiry/simpleQuota')

@@ -9,6 +9,7 @@ import requests
 from Common import queryString, configDatabase, readConfig
 import json
 import time
+import random
 
 config = readConfig.ReadConfig()
 userId = config.getUser('userId')
@@ -21,14 +22,22 @@ def apiTest(url, apiName):
 
     connect = configDatabase.ConfigDatabase()
     sql = "select token_id, server_type from ejet_user_separate where (token_id is not null) " \
-          "and (user_id between 1000671 and 1001240) and server_type = 'C' and token_over_time > NOW()"
+          "and (user_id between 1000671 and 1001240) and server_type = 'C' and token_over_time > NOW()" \
+          "and user_id <> 1000690"
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
+    validDayList = [10, 20, 30, 40, 50, 60]
+    currencyList = ['USD', 'CNY', 'EUR', 'GBP', 'CHF']
+    unitList = ['PCS', 'Set', 'Box', 'Pal', 'Doz']
+    priceTerms = ['FOB', 'EXW', 'FAS', 'FCA', 'CFR']
+    for j in range(len(result)):
+        content['tokenId'] = result[j][0]
 
-    for i in range(len(result)):
-        content['inquiryId'] = 245
-        content['tokenId'] = result[i][0]
+        content['productId'] = 145
+        content['productQuantity'] = random.randint(1, 999999)
+        content['productUnit'] = random.choice(unitList)
+        content['inquiryDescrip'] = '这是inquiryDescrip*****inquiryDescrip'+str(j)
         if result[i][1] == 'A':
             content['appType'] = 'A'
             content['packageName'] = 'com.oujia.offerplus'
@@ -43,4 +52,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, 'pub/inquiry/follow')
+    apiTest(url, 'pub/product/inquiry')
