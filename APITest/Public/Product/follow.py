@@ -29,10 +29,10 @@ def apiTest(url, apiName):
     result = connect.getAll(cursor)
     connect.closeDatabase()
 
-    for i in range(len(result)):
+    for j in range(len(result)):
         content['productId'] = 145
-        content['tokenId'] = result[i][0]
-        if result[i][1] == 'A':
+        content['tokenId'] = result[j][0]
+        if result[j][1] == 'A':
             content['appType'] = 'A'
             content['packageName'] = 'com.oujia.offerplus'
         else:

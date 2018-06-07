@@ -29,8 +29,8 @@ def apiTest(url, apiName):
     for j in range(len(result)):
         content['fromPublic'] = 1
         content['productId'] = 145
-        content['tokenId'] = result[i][0]
-        if result[i][1] == 'A':
+        content['tokenId'] = result[j][0]
+        if result[j][1] == 'A':
             content['appType'] = 'A'
             content['packageName'] = 'com.oujia.offerplus'
         else:

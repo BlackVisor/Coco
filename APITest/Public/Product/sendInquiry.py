@@ -38,7 +38,7 @@ def apiTest(url, apiName):
         content['productQuantity'] = random.randint(1, 999999)
         content['productUnit'] = random.choice(unitList)
         content['inquiryDescrip'] = '这是inquiryDescrip*****inquiryDescrip'+str(j)
-        if result[i][1] == 'A':
+        if result[j][1] == 'A':
             content['appType'] = 'A'
             content['packageName'] = 'com.oujia.offerplus'
         else:
