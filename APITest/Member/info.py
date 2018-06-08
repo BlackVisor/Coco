@@ -18,15 +18,13 @@ def apiTest(url, apiName):
     # fileName = os.path.basename(__file__)
     content = queryString.QueryString.content
 
-    connect = configDatabase.ConfigDatabase()
-    sql = 'select company_id from ejet_user_company where user_id = %d ' % (int(userId))
-    cursor = connect.executeSQL(sql)
-    result = connect.getOne(cursor)
-    connect.closeDatabase()
+    # connect = configDatabase.ConfigDatabase()
+    # sql = 'select  from  where '
+    # cursor = connect.executeSQL(sql)
+    # result = connect.getAll(cursor)
+    # connect.closeDatabase()
 
-    content['companyId'] = result[0]
-    content['page'] = 1
-    content['pageNum'] = 20
+    #content[''] = ''
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
@@ -35,4 +33,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, 'company/inquiries')
+    apiTest(url, 'member/info')
