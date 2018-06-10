@@ -7,11 +7,11 @@
 
 import requests
 from Common import queryString, configDatabase, readConfig
+import json
 
 config = readConfig.ReadConfig()
 userId = config.getUser('userId')
 url = config.getUrl()
-
 
 def apiTest(url, apiName):
 
@@ -19,16 +19,20 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     # connect = configDatabase.ConfigDatabase()
-    # sql = 'select offer_id from ejet_my_offer where user_id = 1001200 and offer_status = 0'
+    # sql = 'select  from  where '
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
+    # connect.closeDatabase()
 
-    #content[''] = ''
+    content['companyId'] = '539'
+    content['page'] = '1'
+    content['pageNum'] = '20'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
     print(a.text)
+    print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
 
 for i in range(1):
-    apiTest(url, 'company/banks')
+    apiTest(url, 'company/pub/products')

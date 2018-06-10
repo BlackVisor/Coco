@@ -27,7 +27,8 @@ def apiTest(url, apiName):
     result = connect.getOne(cursor)
     connect.closeDatabase()
 
-    content['productId'] = result[0]
+    # content['productId'] = result[0]
+    content['ids'] = '656'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

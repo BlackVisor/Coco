@@ -8,12 +8,13 @@
 import requests
 from Common import queryString, configDatabase, readConfig
 
+
 config = readConfig.ReadConfig()
 userId = config.getUser('userId')
 url = config.getUrl()
 
 
-def apiTest(url, apiName):
+def apiTest(url: str, apiName: str):
 
     # fileName = os.path.basename(__file__)
     content = queryString.QueryString.content
@@ -31,4 +32,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, 'company/banks')
+    apiTest(url, 'company/members')

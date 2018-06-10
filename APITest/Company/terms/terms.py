@@ -8,6 +8,10 @@
 import requests
 from Common import queryString, configDatabase, readConfig
 
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
+
 
 def apiTest(url, apiName):
 
@@ -27,4 +31,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, '')
+    apiTest(url, 'company/terms')

@@ -25,7 +25,7 @@ def apiTest(url, apiName):
     # connect.closeDatabase()
 
     # content['productId'] = result[0]
-    content['productId'] = 204
+    content['productId'] = 157
     content['productFrom'] = 2
     # content['productId'] = 511
     # content['productFrom'] = 0

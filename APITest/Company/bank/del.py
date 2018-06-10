@@ -31,4 +31,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, '')
+    apiTest(url, 'company/bank/del')

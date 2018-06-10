@@ -8,6 +8,10 @@
 import requests
 from Common import queryString, configDatabase, readConfig
 
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
+
 
 def apiTest(url, apiName):
 
@@ -19,7 +23,7 @@ def apiTest(url, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
-    #content[''] = ''
+    content['id'] = '239'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
@@ -27,4 +31,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, '')
+    apiTest(url, 'company/terms/del')

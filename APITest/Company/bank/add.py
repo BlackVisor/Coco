@@ -23,7 +23,12 @@ def apiTest(url, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
-    #content[''] = ''
+    content['accountName'] = 'zheshi zhanghu ming'
+    content['accountNum'] = '233'
+    content['beneficiaryBank'] = 'zhongguo yinhang'
+    content['beneficiaryBankAddress'] = '1.1.1.1'
+    content['swiftCode'] = '233233'
+    content['remark'] = 'zheshi remark'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
@@ -31,4 +36,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, '')
+    apiTest(url, 'company/bank/add')

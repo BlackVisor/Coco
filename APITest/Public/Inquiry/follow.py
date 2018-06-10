@@ -21,20 +21,22 @@ def apiTest(url, apiName):
 
     connect = configDatabase.ConfigDatabase()
     sql = "select token_id, server_type from ejet_user_separate where (token_id is not null) " \
-          "and (user_id between 1000671 and 1001240) and server_type = 'C' and token_over_time > NOW()"
+          "and (user_id between 1000671 and 1001240) and user_id <> %d and server_type = 'C' and " \
+          "token_over_time > NOW()" % int(userId)
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
 
-    for i in range(len(result)):
+    # for i in range(len(result)):
+    for i in range(1):
         content['inquiryId'] = 245
-        content['tokenId'] = result[i][0]
-        if result[i][1] == 'A':
-            content['appType'] = 'A'
-            content['packageName'] = 'com.oujia.offerplus'
-        else:
-            content['appType'] = 'I'
-            content['packageName'] = 'com.Ejetsolutions.offerplus'
+        # content['tokenId'] = result[i][0]
+        # if result[i][1] == 'A':
+        #     content['appType'] = 'A'
+        #     content['packageName'] = 'com.oujia.offerplus'
+        # else:
+        #     content['appType'] = 'I'
+        #     content['packageName'] = 'com.Ejetsolutions.offerplus'
 
         # 获取函数名sys._getframe().f_code.co_name
         a = requests.post(url+apiName+'.do', data=content)

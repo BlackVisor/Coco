@@ -24,6 +24,7 @@ def apiTest(url, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
+    content['userId'] = 1001221
     content['page'] = 1
     content['pageNum'] = 100
 

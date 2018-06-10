@@ -23,7 +23,7 @@ def apiTest(url, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
-    #content[''] = ''
+    content['companyPhotos'] = 'Fnwlvyuxikjd-DGnuKoydD7IeHI1,FiwLqwNj1f6OOGISk27ds_En7-g5,FvVZQ19O_LcSaJdguUkvfsIe_mtx,Fl8Bgpm18HDKRHrMoYymzFlu_uGc,Fkj5cHlk3HTqd4_mapQF1S8LaFDX,FiYVc2sXGH5J0_-GHqbAbuclLC1d,FmZ9PqbaYqO8ry1xCrJ9Z7Lcm-C9'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
@@ -31,4 +31,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, 'company/banks')
+    apiTest(url, 'company/editGallery')
