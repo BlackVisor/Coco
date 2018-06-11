@@ -38,7 +38,7 @@ def apiTest(url, apiName):
         {"sheetName": "Size", "sheetValue": "233233233233"}
     ]
 
-    content['productId'] = result[random.randint(1,len(result))][0]
+    content['productId'] = result[random.randint(0,len(result))][0]
     content['categoryId'] = random.randint(1, 178)
     content['productPrice'] = random.randint(1, 999999999)/10000
     # content['productPriceCry'] = random.choice(currencyList)
@@ -48,7 +48,6 @@ def apiTest(url, apiName):
     content['country'] = random.choice(countryList)
     content['validDay'] = random.choice(validDayList)
     content['priceTerms'] = random.choice(priceTerms)
-    content['portOfShipment'] = 'this is port of shipment'
     content['productArrSheet'] = '[' + json.dumps(random.choice(arraySheet)) + ']'
 
 
@@ -58,5 +57,5 @@ def apiTest(url, apiName):
     print(a.text)
 
 
-for i in range(100):
+for i in range(1):
     apiTest(url, 'pub/product/publish')
