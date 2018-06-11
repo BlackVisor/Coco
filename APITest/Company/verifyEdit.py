@@ -36,6 +36,5 @@ def apiTest(url, apiName):
     a = requests.post(url+apiName+'.do', data=content)
     print(a.text)
 
-
 for i in range(1):
     apiTest(url, 'company/verify/edit')
