@@ -24,8 +24,18 @@ def apiTest(url, apiName):
     # result = connect.getAll(cursor)
     # connect.closeDatabase()
 
-
-    # content['tokenId'] = ''
+    content['loginName'] = str(userId)
+    content['password'] = 'f492a324fbf16d306ee09f5d0ac5e1eb'
+    content['registrationId'] = ''
+    content['pushType'] = '1'
+    content['serverArea'] = 'f0:1b:6c:6b:fb:64'
+    content['mac'] = ''
+    content['imei'] = ''
+    content['timeZone'] = '中国标准时间'
+    content['ipAddress'] = ''
+    content['osVersion'] = ''
+    content['electricQty'] = '56'
+    content['connectType'] = 'wifi'
 
 
     # 获取函数名sys._getframe().f_code.co_name
