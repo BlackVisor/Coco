@@ -36,11 +36,22 @@ def apiTest(url, apiName):
     print(a.text)
     print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
-for i in range(40):
-    # 请求wechatPay.do获取outTradeNo
+for i in range(2):
+    # 获取outTradeNo
     content1 = queryString.QueryString.content
     # 0首充 1续费 2额外包
-    if random.randint(0,10) > 5:
+    aa = random.randint(0, 3)
+    ab = random.randint(1, 2)
+    if aa == 0:
+        apiName = 'pay/alipay'
+    elif aa == 1:
+        apiName = 'pay/wechatPay'
+    elif aa == 2:
+        apiName = 'pay/paypalToken'
+    elif aa == 3:
+        apiName = 'pay/creditToken'
+
+    if ab == 1:
         content1['type'] = 1
         content1['subAccountTotal'] = random.randint(0, 10)
         content1['productTotal'] = random.randint(0, 10)
@@ -48,11 +59,14 @@ for i in range(40):
         content1['type'] = 2
         content1['subAccountTotal'] = random.randint(11, 20)
         content1['productTotal'] = random.randint(11, 20)
-    content1['appType'] = 'A'
-    content1['version'] = '1.1.6'
-    b = requests.post(url+'pay/wechatPay.do', data=content1)
+
+    # # 首充
+    # content1['type'] = 0
+    # content1['subAccountTotal'] = random.randint(0, 10)
+    # content1['productTotal'] = random.randint(0, 10)
+
+    b = requests.post(url+apiName+'.do', data=content1)
     print(b.text)
     c = json.loads(b.text)
-
 
     apiTest(url, 'pay/publicNotify')

@@ -38,7 +38,7 @@ def apiTest(url, apiName):
 
     ids = ids[:-1]
     # content['categoryId'] = result1[0]
-    content['categoryId'] = 82
+    content['categoryId'] = 84
     content['ids'] = ids
 
     # 获取函数名sys._getframe().f_code.co_name
