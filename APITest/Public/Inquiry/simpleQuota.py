@@ -22,16 +22,17 @@ def apiTest(url, apiName):
 
     connect = configDatabase.ConfigDatabase()
     sql = "select token_id, server_type from ejet_user_separate where (token_id is not null) " \
-          "and (user_id between 1000671 and 1001240) and server_type = 'C' and token_over_time > NOW()"
+          "and server_type = 'C' and token_over_time > NOW()" \
+          "and user_id between 1003011 and 1003030"
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
-    validDayList = [10, 20, 30, 40, 50, 60]
+    validDayList = [30, 60, 90]
     currencyList = ['USD', 'CNY', 'EUR', 'GBP', 'CHF']
     unitList = ['PCS', 'Set', 'Box', 'Pal', 'Doz']
     priceTerms = ['FOB', 'EXW', 'FAS', 'FCA', 'CFR']
     for j in range(len(result)):
-        content['inquiryId'] = 245
+        content['inquiryId'] = 417
         content['tokenId'] = result[j][0]
         content['price'] = random.randint(1, 99999)
         content['priceCry'] = random.choice(currencyList)

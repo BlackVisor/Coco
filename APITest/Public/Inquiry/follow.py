@@ -20,16 +20,17 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     connect = configDatabase.ConfigDatabase()
-    sql = "select token_id, server_type from ejet_user_separate where (token_id is not null) " \
-          "and (user_id between 1000671 and 1001240) and user_id <> %d and server_type = 'C' and " \
-          "token_over_time > NOW()" % int(userId)
+    # sql = "select token_id, server_type from ejet_user_separate where (token_id is not null) " \
+    #       "and (user_id between 1000671 and 1001240) and user_id <> %d and server_type = 'C' and " \
+    #       "token_over_time > NOW()" % int(userId)
+    sql = "select inquiry_id from ejet_public_inquiry where user_id != %d limit 100" % int(userId)
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
 
-    # for i in range(len(result)):
-    for i in range(1):
-        content['inquiryId'] = 245
+    for i in range(len(result)):
+    # for i in range(1):
+        content['inquiryId'] = result[i][0]
         # content['tokenId'] = result[i][0]
         # if result[i][1] == 'A':
         #     content['appType'] = 'A'

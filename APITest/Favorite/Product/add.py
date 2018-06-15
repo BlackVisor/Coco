@@ -21,7 +21,7 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     connect = configDatabase.ConfigDatabase()
-    sql = 'select product_id from ejet_category_product where user_id != %d and status = 0 limit 300' % (int(userId))
+    sql = 'select product_id from ejet_category_product where user_id != %d and status = 0 limit 100' % (int(userId))
     # sql = 'select offer_id from ejet_my_rece_rela where user_id = %d and del_status = 0' % (int(userId))
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)

@@ -23,9 +23,10 @@ def apiTest(url, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
     # 82有超过200个产品
-    content['categoryId'] = 82
+    content['userId'] = 1000700
+    content['categoryId'] = 152
     content['page'] = 1
-    content['pageNum'] = 80
+    content['pageNum'] = 20
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

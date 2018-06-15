@@ -13,7 +13,6 @@ config = readConfig.ReadConfig()
 userId = config.getUser('userId')
 url = config.getUrl()
 
-
 def apiTest(url, apiName):
 
     # fileName = os.path.basename(__file__)
@@ -25,9 +24,7 @@ def apiTest(url, apiName):
     # result = connect.getAll(cursor)
     # connect.closeDatabase()
 
-    content['page'] = 1
-    content['pageNum'] = 200
-    # content['searchName'] = 'uuu'
+    content['stranUserId'] = '1001221'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
@@ -36,4 +33,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, 'favorite/inquiry/list')
+    apiTest(url, 'strangeDetail')

@@ -24,7 +24,8 @@ def apiTest(url: str, apiName: str):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
 
-    #content[''] = ''
+    content['page'] = 1
+    content['pageNum'] = 20
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

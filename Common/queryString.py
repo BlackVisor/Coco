@@ -34,7 +34,7 @@ class QueryString:
     appType = token.app_type
     if appType == 'A':
         content = androidHeader
-    elif appType == 'I':
+    else:
         content = iosHeader
 
     content['tokenId'] = token.token_id

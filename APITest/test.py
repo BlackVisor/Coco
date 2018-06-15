@@ -1,24 +1,29 @@
-from Common import configDatabase
-a = input('a:')
-b = input('b:')
-c = 299+0.5*12*int(a)+16.99*12*int(b)
-if c < 1000:
-    pass
-elif c >= 1000 and c < 2000:
-    c = 0.9*c
-elif c <= 3000:
-    c = 0.8*c
-else:
-    c = 0.7*c
-print(c)
+from Common import queryString
+import requests, time
 
-connect = configDatabase.ConfigDatabase()
-sql = 'show columns from ejet_user_rela_company'
-cursor = connect.executeSQL(sql)
-result = connect.getAll(cursor)
-connect.closeDatabase()
-a = ''
-for i in range(len(result)):
-    a = a+result[i][0]+','
 
-print(a)
+for j in range(1003011, 1003030):
+    content1 = {
+        'appType': 'I',
+        'languagePack': 'EN',
+        'packageName': 'com.Ejetsolutions.offerplus',
+        'sign': '',
+        'source': '0',
+        'timestamp': 1000*int(time.time()),
+        'version': '1.1.6',
+    }
+
+    content1['loginName'] = j
+    content1['password'] = 'f492a324fbf16d306ee09f5d0ac5e1eb'
+    content1['serverArea'] = 'de'
+    content1['timeZone'] = '+8'
+    content1['osVersion'] = '11.4'
+    content1['imei'] = ''
+    content1['pushType'] = 1
+    content1['ipAddress'] = '192.168.1.160'
+    content1['mac'] = ''
+    content1['electricQty'] = 58
+    content1['connectType'] = ''
+
+    b = requests.post('http://hzdev.offerplus.com:82/offerplus/login.do', data=content1)
+    print(b.text)
