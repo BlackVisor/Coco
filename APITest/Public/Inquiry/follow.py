@@ -23,7 +23,7 @@ def apiTest(url, apiName):
     # sql = "select token_id, server_type from ejet_user_separate where (token_id is not null) " \
     #       "and (user_id between 1000671 and 1001240) and user_id <> %d and server_type = 'C' and " \
     #       "token_over_time > NOW()" % int(userId)
-    sql = "select inquiry_id from ejet_public_inquiry where user_id != %d limit 100" % int(userId)
+    sql = "select inquiry_id from ejet_public_inquiry where user_id != %d limit 200" % int(userId)
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
@@ -40,6 +40,7 @@ def apiTest(url, apiName):
         #     content['packageName'] = 'com.Ejetsolutions.offerplus'
 
         # 获取函数名sys._getframe().f_code.co_name
+        time.sleep(0.5)
         a = requests.post(url+apiName+'.do', data=content)
         print(a.text)
     # print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
