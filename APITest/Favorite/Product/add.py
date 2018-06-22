@@ -22,8 +22,8 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     connect = configDatabase.ConfigDatabase()
-    sql = 'select product_id from ejet_category_product where user_id != %d and status = 0 limit 200' % (int(userId))
-    # sql = 'select offer_id from ejet_my_rece_rela where user_id = %d and del_status = 0' % (int(userId))
+    # sql = 'select product_id from ejet_category_product where user_id != %d and status = 0 limit 200' % (int(userId))
+    sql = 'select offer_id from ejet_my_rece_rela where user_id = %d and del_status = 0 order by update_time desc limit 1' % (int(userId))
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
@@ -32,7 +32,7 @@ def apiTest(url, apiName):
     # for j in range(1):
         content['productId'] = result[j][0]
         # type is: 0=from catalog, 1=from received product
-        content['type'] = 0
+        content['type'] = 1
 
         time.sleep(0.5)
 

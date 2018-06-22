@@ -36,18 +36,19 @@ def apiTest(url, apiName):
     #     #     b = requests.post(url + 'login.do', data=content1)
     #     #     print(b.text)
 
-    for h in range(1003011, 1003030):
-        connect = configDatabase.ConfigDatabase()
+    for h in range(1000684, 1000685):
+        # connect = configDatabase.ConfigDatabase()
 
-        content = {
-        'appType': 'I',
-        'languagePack': 'EN',
-        'packageName': 'com.Ejetsolutions.offerplus',
-        'sign': '',
-        'source': '0',
-        'timestamp': 1000*int(time.time()),
-        'version': '1.1.6',
-        }
+        # content = {
+        # 'appType': 'I',
+        # 'languagePack': 'EN',
+        # 'packageName': 'com.Ejetsolutions.offerplus',
+        # 'sign': '',
+        # 'source': '0',
+        # 'timestamp': 1000*int(time.time()),
+        # 'version': '1.1.6',
+        # }
+        content = queryString.QueryString.content
         content['country'] = 'China_86'
         content['companyName'] = '认证公司'+str(h)
         content['legalPerson'] = '我是经理'+str(h)
@@ -56,10 +57,10 @@ def apiTest(url, apiName):
         content['paperwork'] = '2ae4f00b-0d61-4c99-aa4c-2b1f65f0defc，2ae4f00b-0d61-4c99-aa4c-2b1f65f0defc'
         content['businessLicense'] = '2ae4f00b-0d61-4c99-aa4c-2b1f65f0defc'
         content['companyCity'] = '我是城市'+str(h)
-        sql2 = 'select token_id from ejet_user_separate where user_id = %d' % h
-        cursor = connect.executeSQL(sql2)
-        result3 = connect.getOne(cursor)
-        content['tokenId'] = result3[0]
+        # sql2 = 'select token_id from ejet_user_separate where user_id = %d' % h
+        # cursor = connect.executeSQL(sql2)
+        # result3 = connect.getOne(cursor)
+        # content['tokenId'] = result3[0]
 
 
         # 获取函数名sys._getframe().f_code.co_name
@@ -70,11 +71,11 @@ def apiTest(url, apiName):
         c = json.loads(a.text)
 
 
-        if c['status'] == '000':
-            sql = 'update ejet_verify_company set verify_status = 2 where user_id = %d and verify_status = 1' % h
-            connect.executeSQL(sql)
-            sql1 = 'update ejet_user_company set verify_status = 2 where user_id = %d and verify_status = 1' % h
-            connect.executeSQL(sql1)
+        # if c['status'] == '000':
+        #     sql = 'update ejet_verify_company set verify_status = 2 where user_id = %d and verify_status = 1' % h
+        #     connect.executeSQL(sql)
+        #     sql1 = 'update ejet_user_company set verify_status = 2 where user_id = %d and verify_status = 1' % h
+        #     connect.executeSQL(sql1)
 
 for i in range(1):
     apiTest(url, 'company/verify/edit')
