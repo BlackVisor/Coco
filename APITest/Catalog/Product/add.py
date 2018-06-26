@@ -23,12 +23,12 @@ def apiTest(url, apiName):
     userId = config.getUser('userId')
 
     connect = configDatabase.ConfigDatabase()
-    sql = 'select offer_id from ejet_my_offer where user_id = %d and offer_status = 0 order by rand() limit 200' % (int(userId))
+    sql = 'select offer_id from ejet_my_offer where user_id = %d and offer_status = 0 order by rand() limit 3' % (int(userId))
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
 
-    sql1 = 'select id from ejet_user_category where user_id  = 1001200 order by rand() limit 1'
+    sql1 = 'select id from ejet_user_category where user_id  = %d order by rand() limit 1' % (int(userId))
     cursor1 = connect.executeSQL(sql1)
     result1 = connect.getOne(cursor1)
 
@@ -37,8 +37,8 @@ def apiTest(url, apiName):
         ids = ids + str(result[i][0]) + ','
 
     ids = ids[:-1]
-    # content['categoryId'] = result1[0]
-    content['categoryId'] = 152
+    content['categoryId'] = result1[0]
+    # content['categoryId'] = 152
     content['ids'] = ids
 
     # 获取函数名sys._getframe().f_code.co_name

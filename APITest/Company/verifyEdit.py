@@ -36,7 +36,7 @@ def apiTest(url, apiName):
     #     #     b = requests.post(url + 'login.do', data=content1)
     #     #     print(b.text)
 
-    for h in range(1000684, 1000685):
+    for h in range(1003000, 1003001):
         # connect = configDatabase.ConfigDatabase()
 
         # content = {

@@ -25,7 +25,7 @@ def apiTest(url, apiName):
     # connect.closeDatabase()
 
     content['page'] = 1
-    content['pageNum'] = 200
+    content['pageNum'] = 20
     # content['searchName'] = ''
 
     # 获取函数名sys._getframe().f_code.co_name

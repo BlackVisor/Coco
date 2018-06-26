@@ -40,7 +40,8 @@ for i in range(1):
     # 获取outTradeNo
     content1 = queryString.QueryString.content
     # 0首充 1续费 2额外包
-    aa = random.randint(0, 3)
+    # aa = random.randint(0, 3)
+    aa = 1
     ab = random.randint(2, 2)
     if aa == 0:
         apiName = 'pay/alipay'

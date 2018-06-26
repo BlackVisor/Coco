@@ -31,7 +31,7 @@ def apiTest(url, apiName):
     # a = requests.post(url+apiName+'.do', data=content)
     # print(a.text)
 
-    for j in range(30):
+    for j in range(1):
         content['categoryName'] = '第%d个catalog目录' % j
 
         # 获取函数名sys._getframe().f_code.co_name
