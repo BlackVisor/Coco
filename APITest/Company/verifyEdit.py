@@ -54,8 +54,8 @@ def apiTest(url, apiName):
         content['legalPerson'] = '我是经理'+str(h)
         content['companyTel'] = '8888-8888'
         content['companyAddress'] = '这是公司地址'+str(h)
-        content['paperwork'] = '2ae4f00b-0d61-4c99-aa4c-2b1f65f0defc，2ae4f00b-0d61-4c99-aa4c-2b1f65f0defc'
-        content['businessLicense'] = '2ae4f00b-0d61-4c99-aa4c-2b1f65f0defc'
+        content['paperwork'] = 'Fr8us5eIpFOo2iyE-AHIti2I58Y_，Fr8us5eIpFOo2iyE-AHIti2I58Y_'
+        content['businessLicense'] = 'Fr8us5eIpFOo2iyE-AHIti2I58Y_'
         content['companyCity'] = '我是城市'+str(h)
         # sql2 = 'select token_id from ejet_user_separate where user_id = %d' % h
         # cursor = connect.executeSQL(sql2)
