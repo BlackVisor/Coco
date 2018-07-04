@@ -23,8 +23,8 @@ def apiTest(url, apiName):
     # cursor = connect.executeSQL(sql)
     # result = connect.getAll(cursor)
     # 82有超过200个产品
-    content['userId'] = 1000700
-    content['categoryId'] = 152
+    content['userId'] = 1001221
+    content['categoryId'] = 144
     content['page'] = 1
     content['pageNum'] = 20
 

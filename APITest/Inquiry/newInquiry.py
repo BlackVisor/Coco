@@ -19,16 +19,15 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     # connect = configDatabase.ConfigDatabase()
-    # sql = 'select product_id from ejet_collect_product where user_id = %d and collect_type = 2 order by rand() limit 1' % (int(userId))
+    # sql = 'select  from  where '
     # cursor = connect.executeSQL(sql)
-    # result = connect.getOne(cursor)
+    # result = connect.getAll(cursor)
     # connect.closeDatabase()
 
-    # content['productId'] = result[0]
-    content['productId'] = 98669
-    content['productFrom'] = 1
-    # content['productId'] = 511
-    # content['productFrom'] = 0
+    content['productId'] = '1035'
+    content['byCatalog'] = '1'
+    content['inquiryDescrip'] = 'zheshi 1035 de inquiry'
+    content['quantity'] = '800'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
@@ -37,4 +36,4 @@ def apiTest(url, apiName):
 
 
 for i in range(1):
-    apiTest(url, 'favorite/product/detail')
+    apiTest(url, 'inquiry/newInquiry')
