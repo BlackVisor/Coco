@@ -24,9 +24,14 @@ def apiTest(url, apiName):
     # result = connect.getAll(cursor)
     # connect.closeDatabase()
 
-    content['productId'] = '1035'
-    content['byCatalog'] = '1'
-    content['inquiryDescrip'] = 'zheshi 1035 de inquiry'
+    # 对来自catalog的（收藏的他人的catalog的产品或者直接去他人的catalog产品里）inquiry时需要额外传bycatalog和将offerId改为productId
+    # content['bycatalog'] = '1'
+    # content['productId'] = '1035'
+
+    # 对来自received product的产品inquiry时用原来的入参
+    content['offerId'] = '98669'
+
+    content['inquiryDescrip'] = 'zheshi 98669 de inquiry'
     content['quantity'] = '800'
 
     # 获取函数名sys._getframe().f_code.co_name
