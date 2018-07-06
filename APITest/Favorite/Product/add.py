@@ -28,11 +28,12 @@ def apiTest(url, apiName):
     result = connect.getAll(cursor)
     connect.closeDatabase()
 
-    for j in range(len(result)):
-    # for j in range(1):
-        content['productId'] = result[j][0]
+    # for j in range(len(result)):
+    for j in range(1):
+    #     content['productId'] = result[j][0]
+        content['productId'] = 257
         # type is: 0=from catalog, 1=from received product
-        content['type'] = 1
+        content['type'] = 0
 
         time.sleep(0.5)
 
