@@ -27,6 +27,11 @@ def apiTest(url, apiName):
     content['type'] = ''
     content['page'] = '1'
     content['pageNum'] = '20'
+    content['sort'] = '0'
+    content['readBox'] = '0'
+    content['unReadBox'] = '0'
+    content['processingBox'] = '0'
+    content['closedBox'] = '0'
 
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)

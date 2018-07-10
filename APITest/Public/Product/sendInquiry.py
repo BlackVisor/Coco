@@ -21,9 +21,10 @@ def apiTest(url, apiName):
     content = queryString.QueryString.content
 
     connect = configDatabase.ConfigDatabase()
-    sql = "select token_id, server_type from ejet_user_separate where (token_id is not null) " \
-          "and (user_id between 1000671 and 1001240) and server_type = 'C' and token_over_time > NOW()" \
-          "and user_id <> 1000690"
+    # sql = "select token_id, server_type from ejet_user_separate where (token_id is not null) " \
+    #       "and (user_id between 1000671 and 1001240) and server_type = 'C' and token_over_time > NOW()" \
+    #       "and user_id <> 1000690"
+    sql = "select product_id from ejet_public_product where `status` = 2 and del_status = 0 and user_id != %d " % int(userId)
     cursor = connect.executeSQL(sql)
     result = connect.getAll(cursor)
     connect.closeDatabase()
@@ -32,18 +33,18 @@ def apiTest(url, apiName):
     unitList = ['PCS', 'Set', 'Box', 'Pal', 'Doz']
     priceTerms = ['FOB', 'EXW', 'FAS', 'FCA', 'CFR']
     for j in range(len(result)):
-        content['tokenId'] = result[j][0]
+        # content['tokenId'] = result[j][0]
 
-        content['productId'] = 145
+        content['productId'] = result[j][0]
         content['productQuantity'] = random.randint(1, 999999)
         content['productUnit'] = random.choice(unitList)
         content['inquiryDescrip'] = '这是inquiryDescrip*****inquiryDescrip'+str(j)
-        if result[j][1] == 'A':
-            content['appType'] = 'A'
-            content['packageName'] = 'com.oujia.offerplus'
-        else:
-            content['appType'] = 'I'
-            content['packageName'] = 'com.Ejetsolutions.offerplus'
+        # if result[j][1] == 'A':
+        #     content['appType'] = 'A'
+        #     content['packageName'] = 'com.oujia.offerplus'
+        # else:
+        #     content['appType'] = 'I'
+        #     content['packageName'] = 'com.Ejetsolutions.offerplus'
 
         # 获取函数名sys._getframe().f_code.co_name
         a = requests.post(url+apiName+'.do', data=content)
