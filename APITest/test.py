@@ -1,12 +1,29 @@
-import re
+import requests
+from Common import queryString, configDatabase, readConfig
+import json
 
-with open(r"C:\Users\Oujia\Documents\Tencent Files\812264061\FileRecv\new 3.txt", "r", encoding="utf-8") as f:
-    a = f.readlines()
-pattern = r'productPrice":"\d+\.\d+"'
-c = a[0]
-b = re.findall(pattern, c)
-pattern1 = r'\d+\.\d+'
-for i,j in enumerate(b):
-    d = re.findall(pattern1, j)
-    if float(d[0]) > 0.01 or float(d[0]) < 99999.9999:
-        print(d[0])
+config = readConfig.ReadConfig()
+userId = config.getUser('userId')
+url = config.getUrl()
+
+def apiTest(url, apiName):
+
+    # fileName = os.path.basename(__file__)
+    content = queryString.QueryString.content
+
+    # connect = configDatabase.ConfigDatabase()
+    # sql = 'select  from  where '
+    # cursor = connect.executeSQL(sql)
+    # result = connect.getAll(cursor)
+    # connect.closeDatabase()
+
+    #content[''] = ''
+
+    # 获取函数名sys._getframe().f_code.co_name
+    a = requests.post(url+apiName, data=content)
+    # print(a.text)
+    print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
+
+
+for i in range(1):
+    apiTest('http://192.168.1.41:5201/offerplus/', 'quota/list.do_type_0')
