@@ -21,7 +21,7 @@ paymentWayList = ["T/T", "L/C", "D/P", "Western Union", "Money Gram"]
 def apiTest(url, apiName):
 
     # fileName = os.path.basename(__file__)
-    content = queryString.QueryString.content
+    content = queryString.QueryString.content.copy()
 
     # connect = configDatabase.ConfigDatabase()
     # sql = 'select  from  where '
@@ -34,8 +34,8 @@ def apiTest(url, apiName):
     # 获取函数名sys._getframe().f_code.co_name
     a = requests.post(url+apiName+'.do', data=content)
     print(a.text)
-    print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
+    # print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
 
 for i in range(1):
-    apiTest(url, '')
+    apiTest(url, 'editHeadImg')

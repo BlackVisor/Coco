@@ -2,13 +2,11 @@ import time
 from Common import getToken
 
 
-#通用的app的请求参数
+# 通用的app的请求参数
 class QueryString:
 
     def __init__(self):
-        self.iosHeader = ''
-        self.androidHeader = ''
-        self.content = {}
+        pass
 
     iosHeader = {
         'appType': 'I',
@@ -32,9 +30,10 @@ class QueryString:
 
     token = getToken.GetToken()
     appType = token.app_type
+    content={}
     if appType == 'A':
-        content = androidHeader
+        content = androidHeader.copy()
     else:
-        content = iosHeader
+        content = iosHeader.copy()
 
     content['tokenId'] = token.token_id

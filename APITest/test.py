@@ -1,29 +1,11 @@
-import requests
-from Common import queryString, configDatabase, readConfig
-import json
-
-config = readConfig.ReadConfig()
-userId = config.getUser('userId')
-url = config.getUrl()
-
-def apiTest(url, apiName):
-
-    # fileName = os.path.basename(__file__)
-    content = queryString.QueryString.content
-
-    # connect = configDatabase.ConfigDatabase()
-    # sql = 'select  from  where '
-    # cursor = connect.executeSQL(sql)
-    # result = connect.getAll(cursor)
-    # connect.closeDatabase()
-
-    #content[''] = ''
-
-    # 获取函数名sys._getframe().f_code.co_name
-    a = requests.post(url+apiName, data=content)
-    # print(a.text)
-    print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
+import re
 
 
-for i in range(1):
-    apiTest('http://192.168.1.41:5201/offerplus/', 'quota/list.do_type_0')
+b = input("input=")
+pattern = r'"\w+"\}'
+c = []
+a = re.findall(pattern, b)
+for i in range(len(a)):
+    c.append(a[i][:-1])
+
+print(c)

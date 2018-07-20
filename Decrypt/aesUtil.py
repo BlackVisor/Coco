@@ -122,6 +122,7 @@ class WebInEncrypt:
         self.content4 = base64.b64encode(self.content3).decode('utf-8')
         # urlencode编码为百分数形式
         self.content5 = urllib.parse.quote_plus(self.content4)
+        return self.content4
         print(self.content5)
 
 
