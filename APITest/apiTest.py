@@ -36,6 +36,5 @@ def apiTest(url, apiName):
     print(a.text)
     print(json.dumps(json.loads(a.text), ensure_ascii=False, indent=4, sort_keys=True))
 
-
 for i in range(1):
     apiTest(url, '')

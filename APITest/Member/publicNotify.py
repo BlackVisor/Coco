@@ -40,8 +40,8 @@ for i in range(1):
     # 获取outTradeNo
     content1 = queryString.QueryString.content
     # 0首充 1续费 2额外包
-    aa = random.randint(3, 3)
-    ab = random.randint(2, 2)
+    aa = random.randint(1, 1)
+    ab = random.randint(0, 0)
     if aa == 0:
         apiName = 'pay/alipay'
     elif aa == 1:
@@ -60,10 +60,10 @@ for i in range(1):
         content1['subAccountTotal'] = random.randint(100, 100)
         content1['productTotal'] = random.randint(100, 100)
 
-    # # 首充
-    # content1['type'] = 0
-    # content1['subAccountTotal'] = random.randint(0, 10)
-    # content1['productTotal'] = random.randint(0, 10)
+    # 首充
+    content1['type'] = 0
+    content1['subAccountTotal'] = random.randint(0, 10)
+    content1['productTotal'] = random.randint(0, 10)
 
     b = requests.post(url+apiName+'.do', data=content1)
     print(b.text)
