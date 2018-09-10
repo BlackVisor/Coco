@@ -5,7 +5,7 @@ import gzip
 import re
 import json
 import urllib.parse
-# pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto  
+# pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp37-none-win_amd64.whl pycrypto  
 
 
 class AppOutDecrypt:
@@ -50,9 +50,9 @@ class AppOutDecrypt:
         print('格式化：\n' + json.dumps(json.loads(self.content8), sort_keys=True, ensure_ascii=False, indent=4))
 
 
-# test = AesUtils()
-# test.content1 = input('待解密:')
-# test.decrypt()
+# Test = AesUtils()
+# Test.content1 = input('待解密:')
+# Test.decrypt()
 
 
 class WebInDecrypt:
@@ -90,11 +90,11 @@ class WebInDecrypt:
         print('处理后：\n' + self.content8)
         print('格式化：\n' + json.dumps(json.loads(self.content8), sort_keys=True, ensure_ascii=False, indent=4))
 
-# test = WebInDecrypt()
+# Test = WebInDecrypt()
 # # data=KxCFJlTixPkqS6idIrLGofubSHKQwTadEeg%2FNl0uJGzjxj%2FggZZ9DY5LVfyQXQcoQ%2BfvEKaWhpnFSXsKyLtZUXKtLK82YzIFLB7m2l%2FPKuI%3D&timestamp=1517984853064
 # # {"loginName":"1001200","password":"f492a324fbf16d306ee09f5d0ac5e1eb"}
-# test.content1 = input('待解密：')
-# test.decrypt()
+# Test.content1 = input('待解密：')
+# Test.decrypt()
 
 
 class WebInEncrypt:
@@ -126,12 +126,12 @@ class WebInEncrypt:
         print(self.content5)
 
 
-# test = AesUtils()
+# Test = AesUtils()
 # # {"page":1,"pageNum":50}
 # # raw：C7%2B0lxxEye%2FLnI8ABXJV3hTwbiZHRVx%2FEBSXNemtHDQ%3D
 # # web：C7+0lxxEye/LnI8ABXJV3hTwbiZHRVx/EBSXNemtHDQ=
-# test.conten1 = input('待加密：')
-# test.encode()
+# Test.conten1 = input('待加密：')
+# Test.encode()
 
 
 class WebOutDecrypt:
@@ -184,8 +184,8 @@ class WebOutDecrypt:
         print('格式化：\n' + json.dumps(json.loads(self.content13), sort_keys=True, ensure_ascii=False, indent=4))
 
 
-# test = WebOutDecrypt()
+# Test = WebOutDecrypt()
 # # data=gV/mTZbaNpNczBowIekS3PPRt/lTGOP8OjlZyLO15p8n3CqULTC7Pq5+n/cs0ZA+vtPCkkErQTkYsZCGVV0Ui2TEk87eCrpjFlBLyJZ7x3Izp/4TpavvgYaoqnknZbBeGu9XOBjESCLXwgofqfG5uA==
 # # {"contactNum":21,"receOfferNum":241,"myOfferNum":156,"sendOfferNum":86}
-# test.content1 = input('待解密：')
-# test.urlDecode()
+# Test.content1 = input('待解密：')
+# Test.urlDecode()

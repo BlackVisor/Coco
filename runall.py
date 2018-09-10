@@ -48,12 +48,12 @@ def run(self):
             runner = HtmlTestRunner.HTMLTestRunner(stream=fp,title='Test Report',description='Test Description')
             runner.run(suit)
         else:
-            logger.info("Have no case to test.")
+            logger.info("Have no case to Test.")
     except Exception as ex:
         logger.error(str(ex))
     finally:
         logger.info("********TEST END********")
-        # # send test report by email
+        # # send Test report by email
         # if int(on_off) ==0:
         #     self.email.send.email()
         # elif ini(on_off) ==1:
