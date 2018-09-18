@@ -4,6 +4,7 @@ test1 = aesUtil.AppOutDecrypt()
 test2 = aesUtil.WebInEncrypt()
 test3 = aesUtil.WebInDecrypt()
 test4 = aesUtil.WebOutDecrypt()
+test5 = aesUtil.WebInEncrypt()
 
 test = input('Input:')
 try:
