@@ -20,4 +20,4 @@ test6.content1 = test
 # test3.webInEncrypt()
 # test4.webInDecrypt()
 # test5.webOutEncrypt()
-test6.webOutDecrypt()
+print(test6.webOutDecrypt())
