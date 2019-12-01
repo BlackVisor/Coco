@@ -10,6 +10,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
 import unittest
+import os
+import csv
 
 
 class ParametrizedTestCase(unittest.TestCase):
@@ -31,16 +33,43 @@ class ParametrizedTestCase(unittest.TestCase):
         return suite
 
 
-class TestModel(ParametrizedTestCase):
+class TestExecution(ParametrizedTestCase):
     def test(self, param=None):
-        self.path = param[1]
-        self.argv = param[2]
-        self.target = param[3]
+        path = param[1]
+        argv = param[2]
+        name = param[3]
+        caseNameList = name.strip().split(',')
+        defaultCaseName = caseNameList[0]
+        ret = os.system("python %s %s > %s.log 2>&1" % (path, argv, defaultCaseName))
+        if ret:
+            os.system("taskkill /im chromedriver.exe /F")
+            os.system("taskkill /im chrome.exe /F")
+        else:
+            print("test execute success")
+
+
+def runCase(caseList):
+    suite = unittest.TestSuite()
+    for case in caseList:
+        suite.addTest(ParametrizedTestCase.parametrize(TestExecution, param=case))
+        unittest.TextTestRunner(verbosity=2).run(suite)
+
+def getCase():
+    caseFilePath = ""
+    caseList = []
+    with open(caseFilePath, 'r') as f:
+        fileReader = csv.reader(f)
+        header = next(fileReader)
+        for row in fileReader:
+            if row[0] == "1":
+                caseList.append(row)
+
+        return caseList
 
 
 if __name__ == '__main__':
     try:
-        pass
+        runCase(getCase())
 
     finally:
         pass

@@ -6,10 +6,10 @@
 # @Desc  : Later equals never
 
 
-import os
-import sys
 import time
-from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class BasePage:
@@ -29,18 +29,22 @@ class BasePage:
     def findElements(self, *locator):
         return self.driver.find_elements(*locator)
 
-    @classmethod
-    def setUpClass(cls):
-        # 在这里实例化浏览器，以保测试过程中只有一个浏览器
-        option = webdriver.ChromeOptions()
-        option.add_argument("disable-infobars")
-        driverPath = os.path.dirname(os.path.dirname(__file__)) + '/Driver/chromedriver.exe'
-        cls.driver = webdriver.Chrome(driverPath, options=option)
+    def waitVisible(self, locator, timeout: int = 10, frequency: float = 0.5):
+        return WebDriverWait(self.driver, timeout, frequency).until(EC.visibility_of_element_located(locator))
 
-    @classmethod
-    def tearDownClass(cls):
-        # 测试结束后清理环境，即关闭所有标签和浏览器
-        cls.driver.close()
+    def waitNotVisible(self, locator, timeout: int = 10, frequency: float = 0.5):
+        return WebDriverWait(self.driver, timeout, frequency).until_not(EC.visibility_of_element_located(locator))
+
+    def waitClick(self, locator, timeout: int = 10, frequency: float = 0.5):
+        self.waitVisible(locator, timeout, frequency)
+        # 下面的入参locator前面必须有*，这样findElement接受参数时才能直接接受该参数，而不是重新拼成tuple
+        # 直接用click()会失效，所以用调用js的方式点击
+        self.driver.execute_script("arguments[0].click();", self.findElement(*locator))
+
+    def openUrl(self, url: str):
+        self.driver.get(url)
+        self.passwordLocator = (By.CSS_SELECTOR, '#parameter')
+        self.waitVisible(self.passwordLocator)
 
     @staticmethod
     def sleep(seconds: int):

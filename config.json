@@ -1,0 +1,14 @@
+{
+  "browserConfig": {
+    "httpType": "https",
+    "host": "49.4.82.41",
+    "port": "8888",
+    "loginPassword": "huawei123#$"
+  },
+  "AIHost": {
+    "host": "49.4.82.41",
+    "user": "root",
+    "loginPassword": "Bigdata_2013",
+    "installer": "mindstudio"
+  }
+}
